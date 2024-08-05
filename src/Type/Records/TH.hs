@@ -15,6 +15,7 @@ import Data.Char (toUpper)
 import Language.Haskell.TH.Syntax
 import Language.Haskell.TH.Lib
 import Language.Haskell.TH.Datatype
+import Language.Haskell.TH.Datatype.TyVarBndr (bndrReq)
 
 data FieldSelectorConfig
     = FieldSelectorConfig { fieldNameToSelectorName :: String -> String }
@@ -58,7 +59,7 @@ makeFieldSelector cfg ci n fldName = do
     rhs <- varT $ vars !! n
 
     tv <- newName "a"
-    let bndr = PlainTV tv ()
+    let bndr = PlainTV tv bndrReq
     let famHead = TypeFamilyHead famName [bndr] NoSig Nothing
     let eqn = TySynEqn Nothing lhs rhs
     return [ClosedTypeFamilyD famHead [eqn]]
