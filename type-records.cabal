@@ -28,7 +28,7 @@ library
     -- other-extensions:
     build-depends:    base >=4.16 && <4.21,
                       template-haskell <2.23,
-                      th-abstraction <0.8
+                      th-abstraction >0.6 && <0.8
     hs-source-dirs:   src
     default-language: Haskell2010
 
